@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Django specific
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Media and static files
+/media/
+staticfiles/
+static/
+
+# Environment variables and secrets
+.env
+.env.local
+.env.production
+secret_key.txt
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+
+# Unit test / coverage reports
+.coverage
+*.cover
+htmlcov/
+.tox/
+.nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+*.pot
+
+# Cache
+*.cache
