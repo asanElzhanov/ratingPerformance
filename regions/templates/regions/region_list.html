@@ -1,0 +1,25 @@
+<div class="container region-list" style="padding-left:0; padding-right:0;">
+        {% if regions|length == 0 %}
+            <div class="alert alert-info" role="alert">
+                Нет данных для отображения.
+            </div>
+        {% else %}
+            {% for region in regions %}
+                <a href="{% url 'regions:region_detail' region_id=region.id %}", style="text-decoration: none; color: inherit;display: block;">
+                    <div class="region-card">
+                        <div class="region-left">
+                            {{ region.name }}
+                        </div>
+
+                        <div class="region-right">
+                            {% include "components/region_metrics.html" with result_score=region.region_score.result_score work_score=region.region_score.work_score people_score=region.region_score.people_score %}
+                            <div class="region-right-score">
+                                <div style="font-size: 18px;">Общий балл</div>
+                                <div style="font-weight: 500; font-size: 30px;">{{ region.region_score.overall_score }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        {% endif %}
+    </div>

@@ -1,0 +1,118 @@
+header{
+    padding: 20px 10vw;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 5px 0 rgba(21, 24, 26, 0.1);
+    left: 0;
+    position: sticky;
+    right: 0;
+    top: 0;
+    background: #FFF;
+}
+
+.header-title{
+    color: rgb(39, 43, 48);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+body{
+    background-color: #F3F6F8;
+}
+
+.progress-bar {
+    width: 100%;
+    background: #E9ECEF;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 20px;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #5FA1DB 0%, #1667AD 50%, #0E4370 100%);
+    display: flex;
+    align-items: center;
+    padding-left: 8px;
+    transition: width 0.3s ease;
+}
+
+
+/* blue outsystems navbar
+/* Кнопки */
+.blue-nav-item {
+    cursor: pointer;
+    padding: 24px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #272B30;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* underline анимация */
+.blue-nav-item::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 3px;
+    background-color: #1068EB; /* синий */
+    transition: width 0.3s ease;
+}
+
+/* hover */
+.blue-nav-item:hover {
+    color: #1068EB;
+}
+
+.blue-nav-item:hover::after {
+    width: 100%;
+}
+
+/* активная вкладка */
+.blue-nav-item.active {
+    color: #1068EB;
+}
+
+.blue-nav-item.active span {
+    color: rgb(16, 104, 235);
+}
+
+.blue-nav-item.active::after {
+    width: 100%;
+}
+
+/* view switch */
+.view-switch {
+    display: inline-flex;
+    border: 1px solid rgb(16, 104, 235);
+    border-radius: 6px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.view-btn {
+    padding: 8px 16px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    color: rgb(16, 104, 235);
+    transition: 0.2s;
+}
+
+.view-btn:not(:last-child) {
+    border-right: 1px solid #ccc;
+}
+
+.view-btn:hover {
+    background: #f5f5f5;
+}
+
+.view-btn.active {
+    background: #007bff;
+    color: white;
+}

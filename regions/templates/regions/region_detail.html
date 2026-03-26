@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ region.name }}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'regions/css/region_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; gap:2px;">
+        <a href="{% url 'main:mainPage' %}">Оценка ></a>
+        <span>{{ region.name }}</span>
+    </div>
+    <div>
+        <div style="padding: 32px 48px; gap:20px; align-items: center; display:flex; justify-content:space-between; background:#fff; border-bottom:1px solid #6f6c6c;">
+            <h4>{{ region.name }}</h4>
+            <div style="display: flex; gap: 16px; flex-direction: column;">
+                <div style="display: flex; gap:12px; align-items: center;">
+                    {% if region.akim and region.akim.photo %}
+                    <img src="{{ region.akim.photo.url }}" alt="Аким" style="width: 40px;height: 40px;border-radius: 50%;border: 1px solid lightgray;object-fit: cover;">
+                    {% endif %}
+                    <div style="font-weight: 400; font-size: 12px;">{{ region.akim.fio|default:"Аким не назначен" }}</div>
+                </div>
+                <div>
+                    <span style="color: rgb(106, 113, 120);">{{ date_start_string }}</span>
+                </div>
+            </div>
+            {% include "components/region_metrics.html" with result_score=region.region_score.result_score work_score=region.region_score.work_score people_score=region.region_score.people_score %}
+            <div style="display: flex; flex-direction: column;">
+                <span style="font-size: 18px;">Общий балл</span>
+                <span style="font-weight: 500; font-size: 30px;">{{ region.region_score.overall_score }}</span>
+            </div>
+        </div>
+        <div class="blue-navbar" style="display: flex; gap: 10px; padding: 0 48px; background: #fff;">
+            <a href="?tabname=priority" class="blue-nav-item {% if active_tab == 'priority' %}active{% endif %}" data-tab="priority" style="text-decoration: none;">
+                <span>Оценка приоритетных показателей</span>
+            </a>
+            <a href="?tabname=people" class="blue-nav-item {% if active_tab == 'people' %}active{% endif %}" data-tab="people" style="text-decoration: none;">
+                <span>Оценка населения</span>
+            </a>
+            <a href="?tabname=result" class="blue-nav-item {% if active_tab == 'result' %}active{% endif %}" data-tab="result" style="text-decoration: none;">
+                <span>Оценка результативности</span>
+            </a>
+            <a href="?tabname=work" class="blue-nav-item {% if active_tab == 'work' %}active{% endif %}" data-tab="work" style="text-decoration: none;">
+                <span>Операционная эффективность</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

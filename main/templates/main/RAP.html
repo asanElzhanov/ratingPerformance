@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'regions/css/region_detail.css' %}">
+
+{% endblock %}
+
+{% block content %}
+<div style="display:flex; gap:16px; flex-direction:column;">
+    <div class="view-switch" role="radiogroup" aria-label="Выбор отображения">
+        <button
+            type="button"
+            class="view-btn {% if currentView == 'map' %}active{% endif %}"
+            role="radio"
+            aria-checked="{% if currentView == 'map' %}true{% else %}false{% endif %}"
+            data-view="map"
+        >
+            Карта
+        </button>
+
+        <button
+            type="button"
+            class="view-btn {% if currentView == 'list' %}active{% endif %}"
+            role="radio"
+            aria-checked="{% if currentView == 'list' %}true{% else %}false{% endif %}"
+            data-view="list"
+        >
+            Список
+        </button>
+
+        <button
+            type="button"
+            class="view-btn {% if currentView == 'dashboard' %}active{% endif %}"
+            role="radio"
+            aria-checked="{% if currentView == 'dashboard' %}true{% else %}false{% endif %}"
+            data-view="dashboard"
+        >
+            Дэшборд
+        </button>
+    </div>
+
+    {% if currentView == 'map' %}
+        <div style="padding: 16px; background: #fff; border-radius: 8px;">
+            Карта
+        </div>
+    {% elif currentView == 'list' %}
+        {% include "regions/region_list.html" with regions=regions %}
+    {% elif currentView == 'dashboard' %}
+        <div style="padding: 16px; background: #fff; border-radius: 8px;">
+            ДэшбордЫ
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    // переключение между вью
+    document.querySelectorAll('.view-btn[data-view]').forEach((button) => {
+        button.addEventListener('click', () => {
+            const view = button.dataset.view;
+            const url = new URL(window.location.href);
+            url.searchParams.set('currentView', view);
+            window.location.href = url.toString();
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+.metric-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.metric-row span {
+    font-size: 12px;
+    color: #6f6b6b;
+    width: 170px;
+}
+
+.metrics{
+    display: flex;
+    flex-direction: column;
+    gap:12px;
+}
+
+.region-card{
+    background-color: #FFF;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px 0 rgba(21, 24, 26, 0.1);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.region-left{
+    font-weight: 500;
+    font-size: 24px;
+}
+.region-right-score{
+    display: flex;
+    flex-direction: column;
+}
+
+.region-right{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.region-list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
