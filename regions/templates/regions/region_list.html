@@ -5,17 +5,17 @@
             </div>
         {% else %}
             {% for region in regions %}
-                <a href="{% url 'regions:region_detail' region_id=region.id %}", style="text-decoration: none; color: inherit;display: block;">
+                <a href="{% url 'regions:region_detail' region_id=region.id %}{% if currentView %}?currentView={{ currentView }}{% endif %}" style="text-decoration: none; color: inherit;display: block;">
                     <div class="region-card">
                         <div class="region-left">
                             {{ region.name }}
                         </div>
 
                         <div class="region-right">
-                            {% include "components/region_metrics.html" with result_score=region.region_score.result_score work_score=region.region_score.work_score people_score=region.region_score.people_score %}
+                            {% include "components/region_metrics.html" with segment_scores=region.segment_scores %}
                             <div class="region-right-score">
                                 <div style="font-size: 18px;">Общий балл</div>
-                                <div style="font-weight: 500; font-size: 30px;">{{ region.region_score.overall_score }}</div>
+                                <div style="font-weight: 500; font-size: 30px;">{{ region.overall_segment_score|default:"-" }}</div>
                             </div>
                         </div>
                     </div>

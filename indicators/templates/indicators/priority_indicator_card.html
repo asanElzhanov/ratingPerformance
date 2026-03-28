@@ -1,0 +1,24 @@
+{% load static %}
+
+<div style="background-color: #fff; border-bottom: 2px solid #ced4da; padding: 32px 48px; display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+    <div style="flex-shrink: 0;">
+       <span style="display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background-color: #1068eb; color: white; border-radius: 200px; font-weight: 600; text-align: center;">{{ index }}</span>
+    </div>
+        
+    <div style="flex-grow: 1;">
+        <span style="color: #101213; font-size: 18px; font-weight: 500;">{{ label }}</span>
+    </div>
+        
+    <div style="display: inline-flex; align-items: center; gap: 4px;">
+        <span style="color: #101213; font-size: 26px; font-weight: 600; display: block;">
+            {% if score == 0 %}
+                -
+            {% else %}
+                {{ score }}
+            {% endif %}
+        </span>
+        {% if measurement_unit %}
+            <span style="color: #6c757d; font-size: 14px; margin-top: 4px; display: block;">{{ measurement_unit }}</span>
+        {% endif %}
+    </div>
+</div>

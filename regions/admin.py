@@ -5,9 +5,10 @@ from .models import Akim, Region
 # Register your models here.
 @admin.register(Region)
 class RegionAdmin(admin.ModelAdmin):
-    list_display = ('name', 'akim', 'isCity', 'population', 'kato', 'sdu_name', 'sdu_second_name', 'sdu_third_name', 'sdu_fourth_name', 'created_at', 'updated_at')
+    list_display = ('id', 'name', 'akim', 'isCity', 'population', 'kato', 'sdu_name', 'sdu_second_name', 'sdu_third_name', 'sdu_fourth_name', 'created_at', 'updated_at', 'order')
     search_fields = ('name', 'kato')
     list_filter = ('name',)
+    list_editable = ('akim', 'isCity', 'population', 'kato', 'sdu_name', 'sdu_second_name', 'sdu_third_name', 'sdu_fourth_name', 'order')
     
 @admin.register(Akim)
 class AkimAdmin(admin.ModelAdmin):

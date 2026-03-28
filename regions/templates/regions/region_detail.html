@@ -10,7 +10,7 @@
 {% block content %}
 <div style="display: flex; flex-direction: column; gap: 16px;">
     <div style="display: flex; gap:2px;">
-        <a href="{% url 'main:mainPage' %}">Оценка ></a>
+        <a href="{% url 'main:mainPage' %}{% if current_view %}?currentView={{ current_view }}{% endif %}">Оценка ></a>
         <span>{{ region.name }}</span>
     </div>
     <div>
@@ -27,26 +27,30 @@
                     <span style="color: rgb(106, 113, 120);">{{ date_start_string }}</span>
                 </div>
             </div>
-            {% include "components/region_metrics.html" with result_score=region.region_score.result_score work_score=region.region_score.work_score people_score=region.region_score.people_score %}
+            {% include "components/region_metrics.html" with segment_scores=region_score.segments_score %}
             <div style="display: flex; flex-direction: column;">
                 <span style="font-size: 18px;">Общий балл</span>
-                <span style="font-weight: 500; font-size: 30px;">{{ region.region_score.overall_score }}</span>
+                <span style="font-weight: 500; font-size: 30px;">{{ region_score.overall_score|default:"-" }}</span>
             </div>
         </div>
         <div class="blue-navbar" style="display: flex; gap: 10px; padding: 0 48px; background: #fff;">
-            <a href="?tabname=priority" class="blue-nav-item {% if active_tab == 'priority' %}active{% endif %}" data-tab="priority" style="text-decoration: none;">
+            <a href="?tabname=priority{% if current_view %}&currentView={{ current_view }}{% endif %}" class="blue-nav-item {% if active_tab == 'priority' %}active{% endif %}" data-tab="priority" style="text-decoration: none;">
                 <span>Оценка приоритетных показателей</span>
             </a>
-            <a href="?tabname=people" class="blue-nav-item {% if active_tab == 'people' %}active{% endif %}" data-tab="people" style="text-decoration: none;">
-                <span>Оценка населения</span>
-            </a>
-            <a href="?tabname=result" class="blue-nav-item {% if active_tab == 'result' %}active{% endif %}" data-tab="result" style="text-decoration: none;">
-                <span>Оценка результативности</span>
-            </a>
-            <a href="?tabname=work" class="blue-nav-item {% if active_tab == 'work' %}active{% endif %}" data-tab="work" style="text-decoration: none;">
-                <span>Операционная эффективность</span>
-            </a>
+            {% for segment in segments %}
+                <a href="?tabname={{ segment.system_name }}{% if current_view %}&currentView={{ current_view }}{% endif %}" class="blue-nav-item {% if active_tab == segment.system_name %}active{% endif %}" data-tab="{{ segment.system_name }}" style="text-decoration: none;">
+                    <span>{{ segment.label }}</span>
+                </a>
+            {% endfor %}
         </div>
+        {% if active_tab == 'priority' %}
+            {% for item, value in priority_indicators %}
+                {% include "indicators/priority_indicator_card.html" with index=forloop.counter label=item.indicator.label score=value measurement_unit=item.indicator.measurement_unit %}
+            {% endfor %}
+        {% else %}
+            <div style="display: flex;">
+            </div>
+        {% endif %}
     </div>
 </div>
 

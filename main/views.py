@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
-from regions.models import Region
+from regions.services import get_regions_with_segment_scores
 
 def RapPage(request):
     allowed_views = {'map', 'list', 'dashboard'}
@@ -14,9 +15,13 @@ def RapPage(request):
     }
 
     if requested_view == 'list':
-        data["regions"] = Region.objects.all().prefetch_related('region_score')
+        data["regions"] = get_regions_with_segment_scores()
 
     return render(request, 'main/RAP.html', data)
 
 def mainPage(request):
-    return redirect('main:rapPage')
+    current_view = request.GET.get('currentView')
+    rap_page_url = reverse('main:rapPage')
+    if current_view:
+        return redirect(f'{rap_page_url}?currentView={current_view}')
+    return redirect(rap_page_url)

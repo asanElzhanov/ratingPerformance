@@ -13,6 +13,7 @@ class Region(models.Model):
     center = models.CharField(max_length=100, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    order = models.PositiveIntegerField(default=0)
     
     class Meta:
         verbose_name = "Регион"

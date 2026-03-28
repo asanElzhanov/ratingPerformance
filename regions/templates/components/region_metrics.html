@@ -1,29 +1,8 @@
-<div class="metrics">   
-    
-    <div class="metric-row">
-    
-        <span>Оценка результативности</span>
-    
-        {% include "components/progress_bar.html" with value=result_score %}
-    
-    </div>
-
-    
-    <div class="metric-row">
-    
-        <span>Операционная эффективность</span>
-    
-        {% include "components/progress_bar.html" with value=work_score %}
-    
-    </div>
-
-    
-    <div class="metric-row">
-    
-        <span>Оценка населения</span>
-    
-        {% include "components/progress_bar.html" with value=people_score %}
-    </div>
-
-    
+<div class="metrics">
+        {% for segment in segment_scores %}
+            <div class="metric-row">
+                <span>{{ segment.label }}</span>
+                {% include "components/progress_bar.html" with value=segment.score|default:0 %}
+            </div>
+        {% endfor %}
 </div>
