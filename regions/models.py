@@ -10,12 +10,14 @@ class Region(models.Model):
     sdu_second_name = models.CharField(max_length=100, null=True, blank=True)
     sdu_third_name = models.CharField(max_length=100, null=True, blank=True)
     sdu_fourth_name = models.CharField(max_length=100, null=True, blank=True)
+    center = models.CharField(max_length=100, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         verbose_name = "Регион"
         verbose_name_plural = "Регионы"
+        db_table = 'regions'
     
     def __str__(self):
         return self.name
@@ -31,6 +33,7 @@ class Akim(models.Model):
     class Meta:
         verbose_name = "Аким"
         verbose_name_plural = "Акимы"
+        db_table = 'akims'
     
     def __str__(self):
         return self.fio
