@@ -109,7 +109,8 @@ def get_regions_with_segment_scores() -> list[Region]:
         )
         region.segment_scores = region_score.segments_score
         region.overall_segment_score = region_score.overall_score
-    return regions
+    
+    return sorted(regions, key=lambda r: (r.overall_segment_score is not None, r.overall_segment_score), reverse=True)
 
     
 def get_priority_indicators_values(region_id) -> list[tuple[IndicatorPriority, float]]:
@@ -135,3 +136,19 @@ def get_priority_indicators_values(region_id) -> list[tuple[IndicatorPriority, f
 
     return result
     
+def get_categories_by_segment(segment_id: int) -> list[CategoryVM]:
+    categories = IndicatorCategory.objects.filter(is_active=True, segment_id=segment_id).order_by('order', 'id')
+    category_vms = []
+    for category in categories:
+        category_score = RegionScore.objects.filter(
+            score_type_id=RegionScoreTypeId.CATEGORY,
+            object_id=category.id,
+        ).values_list('value', flat=True).first()
+        category_vms.append(
+            CategoryVM(
+                id=category.id,
+                name=category.label,
+                score=float(category_score) if category_score is not None else None,
+            )
+        )
+    return category_vms

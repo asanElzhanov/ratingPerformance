@@ -1,0 +1,22 @@
+<div class="custom-progress-wrapper">
+
+  <div class="custom-progress-track" style="--value: {{ value|default:0 }};">
+    <div class="custom-progress-tooltip">{{ value }}</div>
+    <div class="custom-progress-bar" data-value="{{ value|default:0 }}">
+    <div class="custom-progress-fill"></div>
+    </div>
+  </div>
+
+  <div class="custom-progress-meta">
+    <div>
+      <div class="custom-progress-value">{{ left_value }}</div>
+      <div class="custom-progress-label">{{ left_label }}</div>
+    </div>
+
+    <div style="text-align: right;">
+      <div class="custom-progress-value">{{ right_value }}</div>
+      <div class="custom-progress-label">{{ right_label }}</div>
+    </div>
+  </div>
+
+</div>

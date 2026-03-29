@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('regions/', include('regions.urls')),
+    path('indicators/api/', include('indicators.urls_api')),
+    path('indicators/', include('indicators.urls_html')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

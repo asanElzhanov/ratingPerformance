@@ -1,0 +1,21 @@
+{% load static %}
+
+<div class="js-category-tabs" data-region-id="{{ region_id }}" data-target-container="category-scope-container" style="display:flex;">
+  {% for category in categories %}
+    <div class="category-tab js-category-tab" data-category-id="{{ category.id }}" style="cursor: pointer;"> 
+      <div style="display:flex; flex-direction: column; height: 100%; justify-content: space-between; gap:20px;">
+        <div style="font-weight: 700;font-size: 18px;">{{ category.name }}</div>
+        <div class="category-score">
+          <div style=color: #6a7178;font-size: 14px;>Общий балл</div>
+          <div style="font-size: 20px;font-weight: 700;">{{ category.score }}</div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<div class="js-category-loader-template" style="display:none;">
+  {% include "loader.html" %}
+</div>
+
+<script src="{% static 'scope/js/scope_list.js' %}"></script>

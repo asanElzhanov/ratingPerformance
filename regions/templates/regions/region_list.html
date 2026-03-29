@@ -5,7 +5,7 @@
             </div>
         {% else %}
             {% for region in regions %}
-                <a href="{% url 'regions:region_detail' region_id=region.id %}{% if currentView %}?currentView={{ currentView }}{% endif %}" style="text-decoration: none; color: inherit;display: block;">
+                <a href="{% url 'main:rapRegionDetailPage' region_id=region.id %}{% if currentView %}?currentView={{ currentView }}{% endif %}" style="text-decoration: none; color: inherit;display: block;">
                     <div class="region-card">
                         <div class="region-left">
                             {{ region.name }}

@@ -1,0 +1,12 @@
+.category-tab {
+  flex: 1;
+  padding: 32px 48px;
+  cursor: pointer;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.category-tab.active {
+  background: #fff;
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
+}

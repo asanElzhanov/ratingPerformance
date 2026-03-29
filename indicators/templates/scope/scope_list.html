@@ -1,0 +1,46 @@
+<div class="rp-scope-list">
+    {% for scope in category.scopes %}
+        <div class="rp-scope-list__item">
+            <div class="rp-scope-list__head">
+                <div class="rp-scope-list__scope-name">{{ scope.name }}</div>
+                <div class="rp-scope-list__scope-score-wrap">
+                    <div class="rp-scope-list__scope-score-label">Общий балл</div>
+                    <div class="rp-scope-list__scope-score-value">{{ scope.score }}</div>
+                </div>
+            </div>
+            <div class="rp-scope-list__body">
+                <div class="rp-scope-list__compare-col">
+                    <div class="rp-scope-list__compare-head">
+                        <span class="rp-scope-list__section-title">Сравнение с регионами</span>
+                        <a class="rp-scope-list__small-link" href="#"><p>Посмотреть</p></a>
+                    </div>
+                    {% include "components/custom_progress_bar.html" with value=scope.score left_value=scope.min_score right_value=scope.max_score left_label="Мин. по РК" right_label="Макс. по РК" %}
+                </div>
+                    <div class="rp-scope-list__indicators-col">
+                        <span class="rp-scope-list__section-title">Показатели</span>
+                        <div class="rp-scope-list__indicators-list">
+                            {% for indicator in scope.indicators %}
+                                <div class="rp-scope-list__indicator-item">
+                                    <div class="rp-scope-list__indicator-main">
+                                        <div class="rp-scope-list__indicator-main-stack">
+                                            <span class="rp-scope-list__indicator-name">{{ indicator.name }}</span>
+                                            <div class="rp-scope-list__indicator-meta">
+                                                <span class="rp-scope-list__indicator-meta-row">Единица измерения: {{ indicator.measurement_unit }}</span>
+                                                <span class="rp-scope-list__indicator-meta-row">Источник данных: {{ indicator.source }}</span>
+                                                <span class="rp-scope-list__indicator-meta-row">Поступление данных: {{ indicator.data_receive_period }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="rp-scope-list__indicator-score-block">
+                                        <span class="rp-scope-list__indicator-score-label">Итоговый балл</span>
+                                        <span class="rp-scope-list__indicator-score-value">{{ indicator.score }}</span>
+                                        <a class="rp-scope-list__small-link" href="#"><p>Посмотреть расчет</p></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

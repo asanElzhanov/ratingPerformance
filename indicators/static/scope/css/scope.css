@@ -1,0 +1,141 @@
+.rp-scope-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rp-scope-list__item {
+    background-color: #fff;
+    padding: 48px 48px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rp-scope-list__head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rp-scope-list__scope-name {
+    font-weight: 700;
+    font-size: 24px;
+    width: 40%;
+}
+
+.rp-scope-list__scope-score-wrap {
+    display: flex;
+    gap: 12px;
+    width: 50%;
+    align-items: center;
+}
+
+.rp-scope-list__scope-score-label {
+    color: #6a7178;
+    font-size: 14px;
+}
+
+.rp-scope-list__scope-score-value {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.rp-scope-list__body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.rp-scope-list__compare-col {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+}
+
+.rp-scope-list__compare-head {
+    display: flex;
+    gap: 4px;
+    flex-direction: column;
+}
+
+.rp-scope-list__section-title {
+    color: #101213;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.rp-scope-list__small-link p {
+    font-size: 10px;
+}
+
+.rp-scope-list__indicators-col {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.rp-scope-list__indicators-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rp-scope-list__indicator-item {
+    border-radius: 16px;
+    background-color: #e9ecef;
+    padding: 24px;
+    display: flex;
+}
+
+.rp-scope-list__indicator-main {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 16px;
+    border-right: 1px solid #413f3f;
+    width: 70%;
+}
+
+.rp-scope-list__indicator-main-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rp-scope-list__indicator-name {
+    color: #101213;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.rp-scope-list__indicator-meta {
+    display: flex;
+    gap: 8px;
+    flex-direction: column;
+}
+
+.rp-scope-list__indicator-meta-row {
+    color: #6c757d;
+    font-size: 12px;
+    display: block;
+}
+
+.rp-scope-list__indicator-score-block {
+    width: 30%;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rp-scope-list__indicator-score-label {
+    color: #6c757d;
+    font-size: 12px;
+    display: block;
+}
+
+.rp-scope-list__indicator-score-value {
+    font-weight: 700;
+    font-size: 28px;
+    display: block;
+}

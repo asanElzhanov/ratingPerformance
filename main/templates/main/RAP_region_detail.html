@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ region.name }}{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'regions/css/region_detail.css' %}">
+<link rel="stylesheet" href="{% static 'category/css/category.css' %}">
+<link rel="stylesheet" href="{% static 'scope/css/scope.css' %}">
+
+{% endblock %}
+
+{% block headerMenu %}
+{% endblock %}
+
+{% block content %}
+<div style="display: flex; flex-direction: column; gap: 16px;">
+    <div style="display: flex; gap:2px;">
+        <a href="{% url 'main:mainPage' %}{% if current_view %}?currentView={{ current_view }}{% endif %}">Оценка ></a>
+        <span>{{ region.name }}</span>
+    </div>
+    {% include "regions/region_detail.html" %}
+</div>
+
+{% endblock %}
